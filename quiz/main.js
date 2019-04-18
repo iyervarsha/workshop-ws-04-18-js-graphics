@@ -160,3 +160,15 @@ const timeline = new mojs.Timeline();
 
 timeline
   .add( burst, circle, whirl );
+
+  var clickHandler = ('ontouchstart' in document.documentElement ? "touchstart" : "click");
+
+  document.addEventListener(clickHandler, function(e) {
+    const coords = { x: e.pageX, y: e.pageY };
+    
+    burst.tune(coords);
+    circle.tune(coords);
+    whirl.tune(coords);
+    
+    timeline.replay();
+  }, false);
